@@ -1,11 +1,11 @@
 import unittest
-from CryptoTokenAuth import CryptoToken, encryption
+from CryptoTokenAuth import TokenAuthentication, encryption
 import time
 
 
 class Test(unittest.TestCase):
 
-    CryptoTokenAuth = CryptoToken(key='testkey')
+    CryptoTokenAuth = TokenAuthentication(key='testkey')
 
     def test_create_token(self):
         token_normal = self.CryptoTokenAuth.create()
@@ -59,10 +59,10 @@ class Test(unittest.TestCase):
         salt = b'sometestsaltinbytes'
         key = 'sometestkeymeow'
 
-        client_1 = CryptoToken(key=key, salt=salt)
+        client_1 = TokenAuthentication(key=key, salt=salt)
         token_1 = client_1.create()
 
-        client_2 = CryptoToken(key=key, salt=salt)
+        client_2 = TokenAuthentication(key=key, salt=salt)
         is_valid_token = client_2.authenticate(token_1)
 
         self.assertTrue(is_valid_token)

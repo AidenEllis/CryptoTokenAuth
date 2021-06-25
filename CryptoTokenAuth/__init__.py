@@ -4,7 +4,7 @@ try:
     import string
     import random
     from CryptoTokenAuth.version import VERSION
-    from CryptoTokenAuth.authentication import CryptoToken
+    from CryptoTokenAuth.authentication import TokenAuthentication
 except ModuleNotFoundError:
     pass
 

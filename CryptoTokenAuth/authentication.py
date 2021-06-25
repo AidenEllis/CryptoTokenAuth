@@ -3,7 +3,7 @@ import calendar
 from CryptoTokenAuth.encryption import is_valid_key, encrypt_content, decrypt_content
 
 
-class CryptoToken:
+class TokenAuthentication:
     def __init__(self, key=None, salt=None, expire_secs=60):
         self.key = key
         self.expire_secs = expire_secs

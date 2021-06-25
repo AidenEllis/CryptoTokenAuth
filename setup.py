@@ -23,7 +23,7 @@ setup(
     packages=find_packages(),
     url='https://github.com/QuackCoding/CryptoTokenAuth',
     package_data={'CryptoTokenAuth': [version]},
-    install_requires=['certifi==2021.5.30', 'cffi', 'cryptography', 'pycparser'],
+    install_requires=open(os.path.join(BASE_DIR, 'CryptoTokenAuth', 'requirements.txt')).read().split("\n"),
     keywords=['TokenAuthentication', 'CryptoTokenAuth', 'Authentication', 'Token'],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
