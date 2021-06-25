@@ -3,6 +3,7 @@ import CryptoTokenAuth
 from setuptools import setup, find_packages
 
 
+BASE_DIR = os.path.dirname(__file__)
 version = CryptoTokenAuth.__version__
 
 
@@ -22,7 +23,7 @@ setup(
     packages=find_packages(),
     url='https://github.com/QuackCoding/CryptoTokenAuth',
     package_data={'CryptoTokenAuth': [version]},
-    install_requires=['cryptography'],
+    install_requires=open(os.path.join(BASE_DIR, "requirements.txt")).read().split("\n"),
     keywords=['TokenAuthentication', 'CryptoTokenAuth', 'Authentication', 'Token'],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
