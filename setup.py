@@ -21,11 +21,12 @@ setup(
     long_description=read_file('README.md'),
     description='A token authentication method.',
     packages=find_packages(),
-    url='https://github.com/QuackCoding/CryptoTokenAuth',
+    url='https://github.com/AidenEllis/CryptoTokenAuth',
     package_data={'CryptoTokenAuth': [version]},
     install_requires=['certifi==2021.5.30', 'cffi', 'cryptography', 'pycparser'],
     keywords=['TokenAuthentication', 'CryptoTokenAuth', 'Authentication', 'Token'],
     classifiers=[
+        "Github :: https://github.com/AidenEllis"
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
