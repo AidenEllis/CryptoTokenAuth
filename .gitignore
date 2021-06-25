@@ -3,3 +3,4 @@ venv
 CryptoAuthToken/cerdentials.py
 salt.key
 playground.py
+build.py
