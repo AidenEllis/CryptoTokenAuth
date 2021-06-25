@@ -1,0 +1,5 @@
+venv
+.idea
+CryptoAuthToken/cerdentials.py
+salt.key
+playground.py
