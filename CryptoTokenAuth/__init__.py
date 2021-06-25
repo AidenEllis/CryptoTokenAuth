@@ -1,9 +1,12 @@
-import os
-import io
-import string
-import random
-from CryptoTokenAuth.version import VERSION
-from CryptoTokenAuth.authentication import CryptoToken
+try:
+    import os
+    import io
+    import string
+    import random
+    from CryptoTokenAuth.version import VERSION
+    from CryptoTokenAuth.authentication import CryptoToken
+except ModuleNotFoundError:
+    pass
 
 __version__ = VERSION
 
