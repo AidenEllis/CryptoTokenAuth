@@ -3,20 +3,9 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet, InvalidToken
 from cryptography.hazmat.primitives import hashes
 import base64
-import os
 
 
-def getSalt():
-    file_path = os.path.join(os.path.dirname(__file__), "salt.key")
-    try:
-        with open(file_path, 'r') as f:
-            data = f.read()
-            return str.encode(data)
-    except FileNotFoundError:
-        pass
-
-
-def authenticate_key(key_password, salt=None):
+def authenticate_key(key_password, salt):
     """
     This Gives You The Masterkey/Token And Does Process With key_password.And Give You The Token.
     :param key_password:
@@ -24,8 +13,8 @@ def authenticate_key(key_password, salt=None):
     :return: Key Depending On The Key_password
     """
 
-    if not salt:
-        salt = getSalt()
+    if type(salt) != bytes:
+        salt = str.encode(salt)
 
     password = key_password.encode()
 
@@ -40,7 +29,7 @@ def authenticate_key(key_password, salt=None):
     return key
 
 
-def encrypt_content(content, key, salt=None):
+def encrypt_content(content, key, salt):
     """
     Encrypts the content with the specified Alogrithm.
     :param content:
@@ -49,8 +38,8 @@ def encrypt_content(content, key, salt=None):
     :return: Encrypted Content
     """
 
-    if not salt:
-        salt = getSalt()
+    if type(salt) != bytes:
+        salt = str.encode(salt)
 
     if content:
         masterkey = authenticate_key(key_password=key, salt=salt)
@@ -62,7 +51,7 @@ def encrypt_content(content, key, salt=None):
         return ''
 
 
-def decrypt_content(content, key, salt=None):
+def decrypt_content(content, key, salt):
     """
     Decrypts The Encrypted Content.
     :param content:
@@ -71,8 +60,8 @@ def decrypt_content(content, key, salt=None):
     :return: Decrypted Content.
     """
 
-    if not salt:
-        salt = getSalt()
+    if type(salt) != bytes:
+        salt = str.encode(salt)
 
     if content:
         masterkey = authenticate_key(key, salt=salt)
@@ -83,15 +72,15 @@ def decrypt_content(content, key, salt=None):
         return ''
 
 
-def is_valid_key(key, content, salt=None):
+def is_valid_key(key, content, salt):
     """
     This Checks If The Given Key IS Valid or Not. :param key: :param salt: :param content: (sample encrypted content)
     A piece of encrypted content to validate the key.like instead of a password we use a seperate data content (in
     bytes). :return: Is Valid
     """
 
-    if not salt:
-        salt = getSalt()
+    if type(salt) != bytes:
+        salt = str.encode(salt)
 
     try:
         content = bytes(content.encode('UTF-8'))

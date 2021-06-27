@@ -4,12 +4,12 @@ from CryptoTokenAuth.encryption import is_valid_key, encrypt_content, decrypt_co
 
 
 class TokenAuthentication:
-    def __init__(self, key=None, salt=None, expire_secs=60):
+    def __init__(self, key, salt, expire_secs=60):
         self.key = key
         self.expire_secs = expire_secs
         self.salt = salt
 
-    def authenticate(self, token: str, key=None, ip=None, salt=None):
+    def authenticate(self, token: str, ip=None, salt=None, key=None):
         if not key:
             key = self.key
 

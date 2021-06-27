@@ -1,10 +1,33 @@
-import os
-import CryptoTokenAuth
 from setuptools import setup, find_packages
+import os
+import subprocess
 
 
-BASE_DIR = os.path.dirname(__file__)
-version = CryptoTokenAuth.__version__
+PACKAGE_NAME = "CryptoTokenAuth"
+
+VERSION_FOLDER_NAME = PACKAGE_NAME
+
+SHORT_DESCRIPTION = "Cryptographic token authentication"
+
+LONG_DESCRIPTION_FILE_PATH = "README.md"
+
+URL = "https://github.com/AidenEllis/CryptoTokenAuth"
+
+REQUIREMENTS_FILE_PATH = "requirements.txt"  # requirements.txt file
+
+KEYWORDS = ['CryptoTokenAuth', 'CryptoTokenAuthentication', 'TokenAuthentication', 'Token', 'Authentication',
+            'Crypto', 'token', 'auth']
+
+AUTHOR = "Aiden Ellis (Dev)"
+
+
+project_version = subprocess.run(['git', 'describe', '--tags'], stdout=subprocess.PIPE).stdout.decode("utf-8").strip()
+assert "." in project_version
+
+assert os.path.isfile(f"{VERSION_FOLDER_NAME}/version.py")
+
+with open(f"{VERSION_FOLDER_NAME}/VERSION", "w", encoding="utf-8") as fh:
+    fh.write(f"{project_version}\n")
 
 
 def read_file(filename):
@@ -13,20 +36,20 @@ def read_file(filename):
 
 
 setup(
-    name="CryptoTokenAuth",
-    version=version,
-    author="Aiden (Dev)",
+    name=PACKAGE_NAME,
+    version=project_version,
+    author=AUTHOR,
     author_email="",
     long_description_content_type="text/markdown",
     long_description=read_file('README.md'),
-    description='A token authentication method.',
+    description=SHORT_DESCRIPTION,
     packages=find_packages(),
-    url='https://github.com/AidenEllis/CryptoTokenAuth',
-    package_data={'CryptoTokenAuth': [version]},
-    install_requires=['certifi==2021.5.30', 'cffi', 'cryptography', 'pycparser'],
-    keywords=['TokenAuthentication', 'CryptoTokenAuth', 'Authentication', 'Token'],
+    url=URL,
+    package_data={'HTMLTemplateRender': ['VERSION']},
+    install_requires=open(REQUIREMENTS_FILE_PATH).read().split("\n"),
+    keywords=KEYWORDS,
     classifiers=[
-        "Github :: https://github.com/AidenEllis"
+        f"Github :: {URL}",
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",

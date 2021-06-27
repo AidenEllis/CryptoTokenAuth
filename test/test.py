@@ -5,7 +5,7 @@ import time
 
 class Test(unittest.TestCase):
 
-    CryptoTokenAuth = TokenAuthentication(key='testkey')
+    CryptoTokenAuth = TokenAuthentication(key='testkey', salt='mytestsalt')
 
     def test_create_token(self):
         token_normal = self.CryptoTokenAuth.create()
@@ -67,8 +67,3 @@ class Test(unittest.TestCase):
 
         self.assertTrue(is_valid_token)
 
-    def test_check_salt(self):
-        salt = encryption.getSalt()
-
-        self.assertTrue(bytes == type(salt))
-        self.assertTrue(len(salt) > 50)
